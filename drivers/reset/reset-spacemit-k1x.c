@@ -15,111 +15,6 @@
 #include <linux/bitops.h>
 #include <dt-bindings/reset/reset-spacemit-k1x.h>
 
-/* APBC register offset */
-#define APBC_UART1_CLK_RST      0x0
-#define APBC_UART2_CLK_RST      0x4
-#define APBC_GPIO_CLK_RST       0x8
-#define APBC_PWM0_CLK_RST       0xc
-#define APBC_PWM1_CLK_RST       0x10
-#define APBC_PWM2_CLK_RST       0x14
-#define APBC_PWM3_CLK_RST       0x18
-#define APBC_TWSI8_CLK_RST      0x20
-#define APBC_UART3_CLK_RST      0x24
-#define APBC_RTC_CLK_RST        0x28
-#define APBC_TWSI0_CLK_RST      0x2c
-#define APBC_TWSI1_CLK_RST      0x30
-#define APBC_TIMERS1_CLK_RST    0x34
-#define APBC_TWSI2_CLK_RST      0x38
-#define APBC_AIB_CLK_RST        0x3c
-#define APBC_TWSI4_CLK_RST      0x40
-#define APBC_TIMERS2_CLK_RST    0x44
-#define APBC_ONEWIRE_CLK_RST    0x48
-#define APBC_TWSI5_CLK_RST      0x4c
-#define APBC_DRO_CLK_RST        0x58
-#define APBC_IR_CLK_RST         0x5c
-#define APBC_TWSI6_CLK_RST      0x60
-#define APBC_TWSI7_CLK_RST      0x68
-#define APBC_TSEN_CLK_RST       0x6c
-
-#define APBC_UART4_CLK_RST      0x70
-#define APBC_UART5_CLK_RST      0x74
-#define APBC_UART6_CLK_RST      0x78
-#define APBC_SSP3_CLK_RST       0x7c
-
-#define APBC_SSPA0_CLK_RST      0x80
-#define APBC_SSPA1_CLK_RST      0x84
-
-#define APBC_IPC_AP2AUD_CLK_RST 0x90
-#define APBC_UART7_CLK_RST      0x94
-#define APBC_UART8_CLK_RST      0x98
-#define APBC_UART9_CLK_RST      0x9c
-
-#define APBC_CAN0_CLK_RST       0xa0
-#define APBC_PWM4_CLK_RST       0xa8
-#define APBC_PWM5_CLK_RST       0xac
-#define APBC_PWM6_CLK_RST       0xb0
-#define APBC_PWM7_CLK_RST       0xb4
-#define APBC_PWM8_CLK_RST       0xb8
-#define APBC_PWM9_CLK_RST       0xbc
-#define APBC_PWM10_CLK_RST      0xc0
-#define APBC_PWM11_CLK_RST      0xc4
-#define APBC_PWM12_CLK_RST      0xc8
-#define APBC_PWM13_CLK_RST      0xcc
-#define APBC_PWM14_CLK_RST      0xd0
-#define APBC_PWM15_CLK_RST      0xd4
-#define APBC_PWM16_CLK_RST      0xd8
-#define APBC_PWM17_CLK_RST      0xdc
-#define APBC_PWM18_CLK_RST      0xe0
-#define APBC_PWM19_CLK_RST      0xe4
-/* end of APBC register offset */
-
-/* MPMU register offset */
-#define MPMU_WDTPCR     0x200
-/* end of MPMU register offset */
-
-/* APMU register offset */
-#define APMU_JPG_CLK_RES_CTRL       0x20
-#define APMU_CSI_CCIC2_CLK_RES_CTRL 0x24
-#define APMU_ISP_CLK_RES_CTRL       0x38
-#define APMU_LCD_CLK_RES_CTRL1      0x44
-#define APMU_LCD_SPI_CLK_RES_CTRL   0x48
-#define APMU_LCD_CLK_RES_CTRL2      0x4c
-#define APMU_CCIC_CLK_RES_CTRL      0x50
-#define APMU_SDH0_CLK_RES_CTRL      0x54
-#define APMU_SDH1_CLK_RES_CTRL      0x58
-#define APMU_USB_CLK_RES_CTRL       0x5c
-#define APMU_QSPI_CLK_RES_CTRL      0x60
-#define APMU_USB_CLK_RES_CTRL       0x5c
-#define APMU_DMA_CLK_RES_CTRL       0x64
-#define APMU_AES_CLK_RES_CTRL       0x68
-#define APMU_VPU_CLK_RES_CTRL       0xa4
-#define APMU_GPU_CLK_RES_CTRL       0xcc
-#define APMU_SDH2_CLK_RES_CTRL      0xe0
-#define APMU_PMUA_MC_CTRL           0xe8
-#define APMU_PMU_CC2_AP             0x100
-#define APMU_PMUA_EM_CLK_RES_CTRL   0x104
-
-#define APMU_AUDIO_CLK_RES_CTRL     0x14c
-#define APMU_HDMI_CLK_RES_CTRL      0x1B8
-
-#define APMU_PCIE_CLK_RES_CTRL_0    0x3cc
-#define APMU_PCIE_CLK_RES_CTRL_1    0x3d4
-#define APMU_PCIE_CLK_RES_CTRL_2    0x3dc
-
-#define APMU_EMAC0_CLK_RES_CTRL     0x3e4
-#define APMU_EMAC1_CLK_RES_CTRL     0x3ec
-/* end of APMU register offset */
-
-/* APBC2 register offset */
-#define APBC2_UART1_CLK_RST		0x00
-#define APBC2_SSP2_CLK_RST		0x04
-#define APBC2_TWSI3_CLK_RST		0x08
-#define APBC2_RTC_CLK_RST		0x0c
-#define APBC2_TIMERS0_CLK_RST		0x10
-#define APBC2_KPC_CLK_RST		0x14
-#define APBC2_GPIO_CLK_RST		0x1c
-/* end of APBC2 register offset */
-
 enum spacemit_reset_base_type{
 	RST_BASE_TYPE_MPMU       = 0,
 	RST_BASE_TYPE_APMU       = 1,
@@ -168,49 +63,6 @@ enum {
 	RESET_NUMBER_SPL,
 };
 
-#ifdef CONFIG_SPL_BUILD
-static u32 transfer_to_spl_list[][2] = {
-	{RESET_TWSI6, RESET_TWSI6_SPL},
-	{RESET_TWSI8, RESET_TWSI8_SPL},
-	{RESET_SDH_AXI, RESET_SDH_AXI_SPL},
-	{RESET_SDH0, RESET_SDH0_SPL},
-	{RESET_USB_AXI, RESET_USB_AXI_SPL},
-	{RESET_USBP1_AXI, RESET_USBP1_AXI_SPL},
-	{RESET_USB3_0, RESET_USB3_0_SPL},
-	{RESET_QSPI, RESET_QSPI_SPL},
-	{RESET_QSPI_BUS, RESET_QSPI_BUS_SPL},
-	{RESET_SDH2, RESET_SDH2_SPL},
-	{RESET_AES, RESET_AES_SPL},
-};
-
-static const struct spacemit_reset_signal
-	k1x_reset_signals[RESET_NUMBER_SPL] = {
-	[RESET_TWSI6_SPL]   = { APBC_TWSI6_CLK_RST, BIT(2), 0, BIT(2), RST_BASE_TYPE_APBC },
-	[RESET_TWSI8_SPL]   = { APBC_TWSI8_CLK_RST, BIT(2), 0, BIT(2), RST_BASE_TYPE_APBC },
-	[RESET_SDH_AXI_SPL]     = { APMU_SDH0_CLK_RES_CTRL, BIT(0), BIT(0), 0, RST_BASE_TYPE_APMU },
-	[RESET_SDH0_SPL]      = { APMU_SDH0_CLK_RES_CTRL, BIT(1), BIT(1), 0, RST_BASE_TYPE_APMU },
-	[RESET_USB_AXI_SPL]   = { APMU_USB_CLK_RES_CTRL, BIT(0), BIT(0), 0, RST_BASE_TYPE_APMU },
-	[RESET_USBP1_AXI_SPL] = { APMU_USB_CLK_RES_CTRL, BIT(4), BIT(4), 0, RST_BASE_TYPE_APMU },
-	[RESET_USB3_0_SPL]    = { APMU_USB_CLK_RES_CTRL, BIT(9)|BIT(10)|BIT(11), BIT(9)|BIT(10)|BIT(11), 0, RST_BASE_TYPE_APMU },
-	[RESET_QSPI_SPL]  = { APMU_QSPI_CLK_RES_CTRL, BIT(1), BIT(1), 0, RST_BASE_TYPE_APMU },
-	[RESET_QSPI_BUS_SPL]  = { APMU_QSPI_CLK_RES_CTRL, BIT(0), BIT(0), 0, RST_BASE_TYPE_APMU },
-	[RESET_SDH2_SPL] = { APMU_SDH2_CLK_RES_CTRL, BIT(1), BIT(1), 0, RST_BASE_TYPE_APMU },
-	[RESET_AES_SPL]	 = { APMU_AES_CLK_RES_CTRL, BIT(4), BIT(4), 0, RST_BASE_TYPE_APMU },
-	};
-
-static u32 transfer_reset_id_to_spl(u32 id)
-{
-	u32 listsize = ARRAY_SIZE(transfer_to_spl_list);
-
-	for (int i = 0; i < listsize; i++){
-		if (id == transfer_to_spl_list[i][0]){
-			pr_info("id:%d, %d,\n", id, transfer_to_spl_list[i][1]);
-			return transfer_to_spl_list[i][1];
-		}
-	}
-	return id;
-}
-#else
 static const struct spacemit_reset_signal
 	k1x_reset_signals[RESET_NUMBER] = {
 	[RESET_UART1]   = { APBC_UART1_CLK_RST, BIT(2), 0, BIT(2), RST_BASE_TYPE_APBC },
@@ -316,7 +168,6 @@ static const struct spacemit_reset_signal
 	[RESET_SEC_KPC] 	= { APBC2_KPC_CLK_RST, BIT(2), 0, BIT(2), RST_BASE_TYPE_APBC2 },
 	[RESET_SEC_GPIO] 	= { APBC2_GPIO_CLK_RST, BIT(2), 0, BIT(2), RST_BASE_TYPE_APBC2 },
 	};
-#endif
 
 
 static u32 spacemit_reset_read(struct spacemit_reset *reset,
@@ -330,29 +181,6 @@ static u32 spacemit_reset_read(struct spacemit_reset *reset,
 	case RST_BASE_TYPE_APBC:
 		base = reset->apbc_base;
 		break;
-#ifndef CONFIG_SPL_BUILD
-	case RST_BASE_TYPE_MPMU:
-		base = reset->mpmu_base;
-		break;
-	case RST_BASE_TYPE_APBS:
-		base = reset->apbs_base;
-		break;
-	case RST_BASE_TYPE_CIU:
-		base = reset->ciu_base;
-		break;
-	case RST_BASE_TYPE_DCIU:
-		base = reset->dciu_base;
-		break;
-	case RST_BASE_TYPE_DDRC:
-		base = reset->ddrc_base;
-		break;
-	case RST_BASE_TYPE_AUDC:
-		base = reset->audio_ctrl_base;
-		break;
-	case RST_BASE_TYPE_APBC2:
-		base = reset->apbc2_base;
-		break;
-#endif
 	default:
 		base = reset->apbc_base;
 		break;
@@ -371,29 +199,6 @@ static void spacemit_reset_write(struct spacemit_reset *reset, u32 value,
 	case RST_BASE_TYPE_APBC:
 		base = reset->apbc_base;
 		break;
-#ifndef CONFIG_SPL_BUILD
-	case RST_BASE_TYPE_MPMU:
-		base = reset->mpmu_base;
-		break;
-	case RST_BASE_TYPE_APBS:
-		base = reset->apbs_base;
-		break;
-	case RST_BASE_TYPE_CIU:
-		base = reset->ciu_base;
-		break;
-	case RST_BASE_TYPE_DCIU:
-		base = reset->dciu_base;
-		break;
-	case RST_BASE_TYPE_DDRC:
-		base = reset->ddrc_base;
-		break;
-	case RST_BASE_TYPE_AUDC:
-		base = reset->audio_ctrl_base;
-		break;
-	case RST_BASE_TYPE_APBC2:
-		base = reset->apbc2_base;
-		break;
-#endif
 	default:
 		base = reset->apbc_base;
 		break;
@@ -423,23 +228,12 @@ static void spacemit_reset_set(struct reset_ctl *rst,
 
 static int spacemit_reset_update(struct reset_ctl *rst, bool assert)
 {
-#ifdef CONFIG_SPL_BUILD
-	rst->id = transfer_reset_id_to_spl(rst->id);
-	if(rst->id < RESET_TWSI6_SPL || rst->id >= RESET_NUMBER_SPL)
-		return 0;
-
-	/* can not write to twsi8*/
-	if (rst->id == RESET_TWSI8_SPL)
-		return 0;
-#else
 	if(rst->id < RESET_UART1 || rst->id >= RESET_NUMBER)
 		return 0;
 
 	/* can not write to twsi8*/
 	if (rst->id == RESET_TWSI8)
 		return 0;
-#endif
-
 	spacemit_reset_set(rst, rst->id, assert);
 	return 0;
 }
@@ -459,7 +253,8 @@ static int spacemit_k1x_reset_probe(struct udevice *dev)
 {
 	struct spacemit_reset *reset = dev_get_priv(dev);
 	pr_info("reset driver probe start \n");
-
+	printk("reset probe called\n");
+	
 	reset->mpmu_base = (void __iomem *)dev_remap_addr_index(dev, 0);
 	if (!reset->mpmu_base) {
 		pr_err("failed to map mpmu registers\n");
