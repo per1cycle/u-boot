@@ -250,60 +250,7 @@ static int spacemit_reset_deassert(struct reset_ctl *rst)
 
 static int spacemit_k1_reset_probe(struct udevice *dev)
 {
-	struct spacemit_reset *reset = dev_get_priv(dev);
-	pr_info("reset driver probe start \n");
-	printk("reset probe called\n");
 	
-	reset->mpmu_base = (void __iomem *)dev_remap_addr_index(dev, 0);
-	if (!reset->mpmu_base) {
-		pr_err("failed to map mpmu registers\n");
-		goto out;
-	}
-
-	reset->apmu_base = (void __iomem *)dev_remap_addr_index(dev, 1);
-	if (!reset->apmu_base) {
-		pr_err("failed to map apmu registers\n");
-		goto out;
-	}
-
-	reset->apbc_base = (void __iomem *)dev_remap_addr_index(dev, 2);
-	if (!reset->apbc_base) {
-		pr_err("failed to map apbc registers\n");
-		goto out;
-	}
-
-	reset->apbs_base = (void __iomem *)dev_remap_addr_index(dev, 3);
-	if (!reset->apbs_base) {
-		pr_err("failed to map apbs registers\n");
-		goto out;
-	}
-
-	reset->ciu_base = (void __iomem *)dev_remap_addr_index(dev, 4);
-	if (!reset->ciu_base) {
-		pr_err("failed to map ciu registers\n");
-		goto out;
-	}
-
-	reset->dciu_base = (void __iomem *)dev_remap_addr_index(dev, 5);
-	if (!reset->dciu_base) {
-		pr_err("failed to map dragon ciu registers\n");
-		goto out;
-	}
-
-	reset->ddrc_base = (void __iomem *)dev_remap_addr_index(dev, 6);
-	if (!reset->ddrc_base) {
-		pr_err("failed to map ddrc registers\n");
-		goto out;
-	}
-
-	reset->apbc2_base = (void __iomem *)dev_remap_addr_index(dev, 7);
-	if (!reset->apbc2_base) {
-		pr_err("failed to map apbc2 registers\n");
-		goto out;
-	}
-	reset->signals = k1_reset_signals;
-	pr_info("reset driver probe finish \n");
-out:
 	return 0;
 }
 
@@ -318,7 +265,7 @@ static const struct udevice_id k1_reset_ids[] = {
 };
 
 U_BOOT_DRIVER(k1_reset) = {
-	.name		= "spacemit,k1-reset",
+	.name		= "spacemit_reset",
 	.id		= UCLASS_RESET,
 	.ops		= &k1_reset_ops,
 	.of_match = k1_reset_ids,

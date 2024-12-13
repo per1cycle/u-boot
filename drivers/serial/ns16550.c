@@ -516,7 +516,7 @@ int ns16550_serial_probe(struct udevice *dev)
 	fdt_addr_t addr;
 	fdt_addr_t size;
 	int ret;
-
+	printk("Hello ns16550 probe.");
 	/*
 	 * If we are on PCI bus, either directly attached to a PCI root port,
 	 * or via a PCI bridge, assign plat->base before probing hardware.
