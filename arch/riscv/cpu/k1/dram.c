@@ -4,17 +4,54 @@
  */
 
 #include <asm/global_data.h>
+#include <asm/io.h>
 #include <config.h>
 #include <fdt_support.h>
 #include <linux/sizes.h>
 
 DECLARE_GLOBAL_DATA_PTR;
 
+static inline u32 map_format_size(u32 val)
+{
+	u32 tmp;
+
+	tmp = (val & 0x1);
+	if (tmp == 0)
+		return 0;
+	tmp = (val & 0x1f0000) >> 16;
+	switch (tmp) {
+	case 0xd:
+		return 512;
+	case 0xe:
+		return 1024;
+	case 0xf:
+		return 2048;
+	case 0x10:
+		return 4096;
+	case 0x11:
+		return 8192;
+	default:
+		printf("donot support such density=0x%x device\n", val);
+		return 0;
+		break;
+	}
+}
+
+u32 ddr_get_density(void)
+{
+	u32 ddr_size = 0;	
+	u32 cs0_size = 0;
+	u32 cs1_size = 0;
+
+	cs0_size = map_format_size(readl((void*)DDR_BASE + 0x200));
+	cs1_size = map_format_size(readl((void*)DDR_BASE + 0x208));
+	ddr_size = cs0_size + cs1_size;
+	return ddr_size;
+}
 int dram_init(void)
 {
 	gd->ram_base = CFG_SYS_SDRAM_BASE;
-	/* TODO get ram size from ddr controller */
-	gd->ram_size = SZ_4G;
+	gd->ram_size = (u64)ddr_get_density() * SZ_1M;
 	return 0;
 }
 
