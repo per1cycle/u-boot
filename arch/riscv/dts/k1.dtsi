@@ -2,6 +2,8 @@
 /*
  * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
  */
+#include <dt-bindings/clock/spacemit-k1x-clock.h>
+#include <dt-bindings/reset/spacemit-k1-reset.h>
 
 /dts-v1/;
 / {
@@ -321,6 +323,49 @@
 		};
 	};
 
+	clocks: clocks {
+		#address-cells = <0x2>;
+		#size-cells = <0x2>;
+		ranges;
+
+		vctcxo_24: vctcxo_24 {
+			#clock-cells = <0>;
+			compatible = "fixed-clock";
+			clock-frequency = <24000000>;
+			clock-output-names = "vctcxo_24";
+		};
+		vctcxo_3: vctcxo_3 {
+			#clock-cells = <0>;
+			compatible = "fixed-clock";
+			clock-frequency = <3000000>;
+			clock-output-names = "vctcxo_3";
+		};
+		vctcxo_1: vctcxo_1 {
+			#clock-cells = <0>;
+			compatible = "fixed-clock";
+			clock-frequency = <1000000>;
+			clock-output-names = "vctcxo_1";
+		};
+		pll1_vco: pll1_vco {
+			#clock-cells = <0>;
+			compatible = "fixed-clock";
+			clock-frequency = <24576000>;
+			clock-output-names = "pll1_vco";
+		};
+		clk_32k: clk_32k {
+			#clock-cells = <0>;
+			compatible = "fixed-clock";
+			clock-frequency = <32000>;
+			clock-output-names = "clk_32k";
+		};
+		clk_dummy: clk_dummy {
+			#clock-cells = <0>;
+			compatible = "fixed-clock";
+			clock-frequency = <0>;
+			clock-output-names = "clk_dummy";
+		};
+	};
+
 	soc {
 		compatible = "simple-bus";
 		interrupt-parent = <&plic>;
@@ -474,11 +519,36 @@
 			status = "okay";
 		};
 
+		ccu: clock-controller@d4050000 {
+			compatible = "spacemit,k1x-ccu";
+			reg = <0x0 0xd4050000 0x0 0x209c>,
+				<0x0 0xd4282800 0x0 0x400>,
+				<0x0 0xd4015000 0x0 0x1000>,
+				<0x0 0xd4090000 0x0 0x1000>,
+				<0x0 0xd4282c00 0x0 0x400>,
+				<0x0 0xd8440000 0x0 0x98>,
+				<0x0 0xc0000000 0x0 0x4280>,
+				<0x0 0xf0610000 0x0 0x20>;
+			reg-names = "mpmu", "apmu", "apbc", "apbs", "ciu", "dciu", "ddrc", "apbc2";
+			clocks = <&vctcxo_24>, <&vctcxo_3>, <&vctcxo_1>, <&pll1_vco>,
+				<&clk_32k>, <&clk_dummy>;
+			clock-names = "vctcxo_24", "vctcxo_3", "vctcxo_1", "pll1_vco",
+				"clk_32k", "clk_dummy";
+			#clock-cells = <1>;
+			status = "okay";
+		};
+
 		sdhci0: sdh@d4280000 {
 			compatible = "spacemit,k1-x-sdhci";
 			reg = <0x0 0xd4280000 0x0 0x200>;
 			interrupt-parent = <&plic>;
 			interrupts = <99>;
+			resets = <&reset RESET_SDH_AXI>,
+					 <&reset RESET_SDH0>;
+			reset-names = "sdh_axi", "sdh0";
+			clocks = <&ccu CLK_SDH0>,
+					 <&ccu CLK_SDH_AXI>;
+			clock-names = "sdh-io", "sdh-core";
 			status = "disabled";
 		};
 
@@ -487,6 +557,12 @@
 			reg = <0x0 0xd4280800 0x0 0x200>;
 			interrupt-parent = <&plic>;
 			interrupts = <100>;
+			resets = <&reset RESET_SDH_AXI>,
+					 <&reset RESET_SDH1>;
+			reset-names = "sdh_axi", "sdh1";
+			clocks = <&ccu CLK_SDH1>,
+					 <&ccu CLK_SDH_AXI>;
+			clock-names = "sdh-io", "sdh-core";
 			status = "disabled";
 		};
 
@@ -495,6 +571,12 @@
 			reg = <0x0 0xd4281000 0x0 0x200>;
 			interrupt-parent = <&plic>;
 			interrupts = <101>;
+			resets = <&reset RESET_SDH_AXI>,
+					 <&reset RESET_SDH2>;
+			reset-names = "sdh_axi", "sdh2";
+			clocks = <&ccu CLK_SDH2>,
+					 <&ccu CLK_SDH_AXI>;
+			clock-names = "sdh-io", "sdh-core";
 			status = "disabled";
 		};
 	};
