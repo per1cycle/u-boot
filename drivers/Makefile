@@ -130,3 +130,4 @@ obj-$(CONFIG_$(SPL_TPL_)DM_RNG) += rng/
 endif
 
 obj-y += soc/
+obj-$(CONFIG_TARGET_BANANAPI_F3) += ddr/spacemit/k1x/
