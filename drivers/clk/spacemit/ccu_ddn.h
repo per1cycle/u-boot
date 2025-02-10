@@ -8,7 +8,7 @@
 #define _CCU_DDN_H_
 
 
-#include "ccu-k1x.h"
+#include "ccu-k1.h"
 
 #define CCU_CLK_DDN "ccu_clk_ddn"
 struct ccu_ddn_tbl {

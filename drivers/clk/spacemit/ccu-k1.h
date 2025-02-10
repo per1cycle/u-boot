@@ -4,12 +4,12 @@
  *
  */
 
-#ifndef _CCU_SPACEMIT_K1X_H_
-#define _CCU_SPACEMIT_K1X_H_
+#ifndef _CCU_SPACEMIT_k1_H_
+#define _CCU_SPACEMIT_k1_H_
 
 #include <clk.h>
 #include <clk-uclass.h>
-#include <dt-bindings/clock/spacemit-k1x-clock.h>
+#include <dt-bindings/clock/spacemit-k1-clock.h>
 
 #define SPACEMIT_CLK_NO_PARENT "clk_dummy"
 
@@ -53,7 +53,7 @@ struct ccu_common {
 	struct spacemit_clk_table * clk_tbl;
 };
 
-struct spacemit_k1x_clk {
+struct spacemit_k1_clk {
 	void __iomem *mpmu_base;
 	void __iomem *apmu_base;
 	void __iomem *apbc_base;
@@ -123,9 +123,9 @@ static inline struct ccu_common *clk_to_ccu_common(struct clk *clk)
 	return container_of(clk, struct ccu_common, clk);
 }
 
-int spacemit_ccu_probe(struct spacemit_k1x_clk *clk_info,
+int spacemit_ccu_probe(struct spacemit_k1_clk *clk_info,
 		    struct spacemit_clk_table *clks);
 
 ulong transfer_clk_id_to_spl(ulong id);
 
-#endif /* _CCU_SPACEMIT_K1X_H_ */
+#endif /* _CCU_SPACEMIT_k1_H_ */
