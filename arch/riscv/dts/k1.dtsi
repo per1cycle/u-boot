@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
  */
-#include <dt-bindings/clock/spacemit-k1x-clock.h>
+#include <dt-bindings/clock/spacemit-k1-clock.h>
 #include <dt-bindings/reset/spacemit-k1-reset.h>
 
 /dts-v1/;
@@ -517,7 +517,7 @@
 		};
 
 		ccu: clock-controller@d4050000 {
-			compatible = "spacemit,k1x-ccu";
+			compatible = "spacemit,k1-ccu";
 			reg = <0x0 0xd4050000 0x0 0x209c>,
 				<0x0 0xd4282800 0x0 0x400>,
 				<0x0 0xd4015000 0x0 0x1000>,
