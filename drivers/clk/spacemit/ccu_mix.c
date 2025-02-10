@@ -25,9 +25,6 @@ static int twsi8_reg_val = 0x04;
 
 static int ccu_mix_trigger_fc(struct clk *clk)
 {
-#ifdef CONFIG_SPL_BUILD
-	return 0;
-#else
 	struct ccu_mix *mix = clk_to_ccu_mix(clk);
 	struct ccu_common * common = &mix->common;
 	unsigned long val = 0;
@@ -69,10 +66,8 @@ static int ccu_mix_trigger_fc(struct clk *clk)
 	}
 
 	return ret;
-#endif
 }
 
-#ifndef CONFIG_SPL_BUILD
 static int ccu_mix_disable(struct clk *clk)
 {
 	struct ccu_mix *mix = clk_to_ccu_mix(clk);
@@ -83,11 +78,7 @@ static int ccu_mix_disable(struct clk *clk)
 	if (!gate)
 		return 0;
 
-#ifdef CONFIG_SPL_BUILD
-	if (clk->id == CLK_TWSI8_SPL){
-#else
 	if (clk->id == CLK_TWSI8){
-#endif
 		twsi8_reg_val &= ~0x7;
 		twsi8_reg_val |= 0x4;
 		tmp = twsi8_reg_val;
@@ -151,11 +142,7 @@ static int ccu_mix_set_parent(struct clk *clk, struct clk *parent)
 		return index;
 	}
 
-#ifdef CONFIG_SPL_BUILD
-	if (clk->id == CLK_TWSI8_SPL){
-#else
 	if (clk->id == CLK_TWSI8){
-#endif
 		twsi8_reg_val &= ~GENMASK(mux->width + mux->shift - 1, mux->shift);
 		twsi8_reg_val |= (index << mux->shift);
 		reg = twsi8_reg_val;
@@ -193,13 +180,9 @@ static int ccu_mix_set_parent(struct clk *clk, struct clk *parent)
 
 	return 0;
 }
-#endif
 
 static int ccu_mix_enable(struct clk *clk)
 {
-#ifdef CONFIG_SPL_BUILD
-	clk->id = transfer_clk_id_to_spl(clk->id);
-#endif
 	struct ccu_mix *mix = clk_to_ccu_mix(clk);
 	struct ccu_common * common = &mix->common;
 	struct ccu_gate_config *gate = mix->gate;
@@ -210,11 +193,7 @@ static int ccu_mix_enable(struct clk *clk)
 	if (!gate)
 		return 0;
 
-#ifdef CONFIG_SPL_BUILD
-	if (clk->id == CLK_TWSI8_SPL){
-#else
 	if (clk->id == CLK_TWSI8){
-#endif
 		twsi8_reg_val &= ~0x7;
 		twsi8_reg_val |= 0x3;
 		tmp = twsi8_reg_val;
@@ -275,9 +254,6 @@ static int ccu_mix_enable(struct clk *clk)
 
 static ulong ccu_mix_get_rate(struct clk *clk)
 {
-#ifdef CONFIG_SPL_BUILD
-	clk->id = transfer_clk_id_to_spl(clk->id);
-#endif
 	struct ccu_mix *mix = clk_to_ccu_mix(clk);
 	struct ccu_common * common = &mix->common;
 	struct ccu_div_config *div = mix->div;
@@ -285,11 +261,7 @@ static ulong ccu_mix_get_rate(struct clk *clk)
 	unsigned long val;
 	u32 reg;
 
-#ifdef CONFIG_SPL_BUILD
-	if (clk->id == CLK_TWSI8_SPL){
-#else
 	if (clk->id == CLK_TWSI8){
-#endif
 		val = parent_rate;
 		return val;
 	}
@@ -372,9 +344,6 @@ u32 *mux_val, u32 *div_val, u32 *parent_id)
 
 static ulong ccu_mix_set_rate(struct clk *clk, unsigned long rate)
 {
-#ifdef CONFIG_SPL_BUILD
-	clk->id = transfer_clk_id_to_spl(clk->id);
-#endif
 	struct ccu_mix *mix = clk_to_ccu_mix(clk);
 	struct ccu_common * common = &mix->common;
 	struct ccu_div_config *div_config = mix->div? mix->div: NULL;
@@ -386,11 +355,7 @@ static ulong ccu_mix_set_rate(struct clk *clk, unsigned long rate)
 	u32 reg;
 	int ret;
 
-#ifdef CONFIG_SPL_BUILD
-	if (clk->id == CLK_TWSI8_SPL)
-#else
 	if (clk->id == CLK_TWSI8)
-#endif
 		return 0;
 
 	if(!div_config && !mux_config){
@@ -463,11 +428,7 @@ unsigned int ccu_mix_get_parent(struct clk *clk)
 	if(!mux)
 		return 0;
 
-#ifdef CONFIG_SPL_BUILD
-	if (clk->id == CLK_TWSI8_SPL){
-#else
 	if (clk->id == CLK_TWSI8){
-#endif
 		parent = (twsi8_reg_val >> 4) & 0x7;
 		return parent;
 	}
@@ -493,11 +454,9 @@ unsigned int ccu_mix_get_parent(struct clk *clk)
 }
 
 const struct clk_ops ccu_mix_ops = {
-#ifndef CONFIG_SPL_BUILD
 	.disable 	= ccu_mix_disable,
 	.round_rate 	= ccu_mix_round_rate,
 	.set_parent 	= ccu_mix_set_parent,
-#endif
 	.enable 	= ccu_mix_enable,
 	.get_rate	= ccu_mix_get_rate,
 	.set_rate 	= ccu_mix_set_rate,
