@@ -1020,4 +1020,6 @@ config MDIO_MUX_MESON_GXL
 	  This driver is used for the MDIO mux found on the Amlogic GXL & compatible
 	  SoCs.
 
+source "drivers/net/spacemit/Kconfig"
+
 endif # NETDEVICES

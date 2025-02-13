@@ -23,3 +23,30 @@
 &uart0 {
 	status = "okay";
 };
+
+&eth0 {
+	status = "okay";
+
+	phy-reset-pin = <110>;
+
+	clk_tuning_enable;
+	clk-tuning-by-delayline;
+	tx-phase = <90>;
+	rx-phase = <73>;
+
+	phy-mode = "rgmii";
+	phy-addr = <1>;
+	phy-handle = <&rgmii>;
+
+	ref-clock-from-phy;
+
+	mdio {
+		#address-cells = <0x1>;
+		#size-cells = <0x0>;
+		rgmii: phy@0 {
+			compatible = "ethernet-phy-id001c.c916";
+			device_type = "ethernet-phy";
+			reg = <0x1>;
+		};
+	};
+};

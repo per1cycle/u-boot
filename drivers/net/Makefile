@@ -81,6 +81,7 @@ obj-$(CONFIG_NET_OCTEON) += octeon/
 obj-$(CONFIG_NET_OCTEONTX) += octeontx/
 obj-$(CONFIG_NET_OCTEONTX2) += octeontx2/
 obj-$(CONFIG_OCTEONTX2_CGX_INTF) += octeontx2/cgx_intf.o
+obj-$(CONFIG_SPACEMIT_K1X_EMAC) += spacemit/
 obj-$(CONFIG_OCTEONTX_SMI) += octeontx/smi.o
 obj-$(CONFIG_PCH_GBE) += pch_gbe.o
 obj-$(CONFIG_PCNET) += pcnet.o
