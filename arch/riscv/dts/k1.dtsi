@@ -513,7 +513,7 @@
 				<0x0 0xf0610000 0x0 0x20>;
 			reg-names = "mpmu", "apmu", "apbc", "apbs", "ciu", "dciu", "ddrc", "apbc2";
 			#reset-cells = <1>;
-			status = "disabled";
+			status = "okay";
 		};
 
 		ccu: clock-controller@d4050000 {
@@ -532,7 +532,7 @@
 			clock-names = "vctcxo_24", "vctcxo_3", "vctcxo_1", "pll1_vco",
 				"clk_32k", "clk_dummy";
 			#clock-cells = <1>;
-			status = "disabled";
+			status = "okay";
 		};
 		
 		eth0: ethernet@cac80000 {
