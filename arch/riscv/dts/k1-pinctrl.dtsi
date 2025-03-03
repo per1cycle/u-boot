@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+/*
+ * Copyright (C) 2022 Spacemit Inc.
+ * Copyright (C) 2025 Huan Zhou <me@per1cycle.org>
+ */
+
+#include <dt-bindings/pinctrl/k1-pinctrl.h>
+
+&pinctrl {
+    pinctrl_uart0_0: uart0_0_grp {
+        pinctrl-single,pins = <
+            K1_PADCONF(MMC1_DAT3,  MUX_MODE3, (EDGE_NONE | PULL_UP | PAD_3V_DS4))  /* uart0_txd */
+            K1_PADCONF(MMC1_DAT2,  MUX_MODE3, (EDGE_NONE | PULL_UP | PAD_3V_DS4))  /* uart0_rxd */
+        >;
+    };
+
+    pinctrl_uart0_1: uart0_1_grp {
+        pinctrl-single,pins = <
+            K1_PADCONF(MMC1_DAT3,  MUX_MODE3, (EDGE_NONE | PULL_UP | PAD_3V_DS4))  /* uart0_txd */
+            K1_PADCONF(MMC1_DAT2,  MUX_MODE3, (EDGE_NONE | PULL_UP | PAD_3V_DS4))  /* uart0_rxd */
+        >;
+    };
+
+    pinctrl_uart0_2: uart0_2_grp {
+        pinctrl-single,pins = <
+            K1_PADCONF(MMC1_DAT3,  MUX_MODE3, (EDGE_NONE | PULL_UP | PAD_3V_DS4))  /* uart0_txd */
+            K1_PADCONF(MMC1_DAT2,  MUX_MODE3, (EDGE_NONE | PULL_UP | PAD_3V_DS4))  /* uart0_rxd */
+        >;
+    };
+
+    pinctrl_uart0_3: uart0_3_grp {
+        pinctrl-single,pins = <
+            K1_PADCONF(MMC1_DAT3,  MUX_MODE3, (EDGE_NONE | PULL_UP | PAD_3V_DS4))  /* uart0_txd */
+            K1_PADCONF(MMC1_DAT2,  MUX_MODE3, (EDGE_NONE | PULL_UP | PAD_3V_DS4))  /* uart0_rxd */
+        >;
+    };
+};
