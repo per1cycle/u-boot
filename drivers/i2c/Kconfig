@@ -674,6 +674,13 @@ config SYS_I2C_STM32F7
 	   _ Optional clock stretching
 	   _ Software reset
 
+config SYS_I2C_SPACEMIT
+        bool "SPACEMIT I2C driver"
+        depends on DM_I2C
+        help
+          Enable this will add
+		  support for SPACEMIT I2C controllers.
+
 config SYS_I2C_SUN6I_P2WI
 	bool "Allwinner sun6i P2WI controller"
 	depends on ARCH_SUNXI
