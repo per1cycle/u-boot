@@ -370,5 +370,6 @@ source "drivers/pinctrl/sunxi/Kconfig"
 source "drivers/pinctrl/tegra/Kconfig"
 source "drivers/pinctrl/uniphier/Kconfig"
 source "drivers/pinctrl/starfive/Kconfig"
+source "drivers/pinctrl/spacemit/Kconfig"
 
 endmenu

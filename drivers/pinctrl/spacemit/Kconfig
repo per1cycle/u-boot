@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: GPL-2.0-only
+
+config SPACEMIT_K1_PINCTRL
+	bool "Pinctrl driver for SpacemiT SoC"
+	depends on PINCTRL_FULL && SPACEMIT_K1
+	help
+	  Say yes here to support pin control on the StarFive RISC-V SoC.
+	  This also provides an interface to the GPIO pins not used by other
+	  peripherals supporting inputs, outputs, configuring pull-up/pull-down
+	  and interrupts on input changes.

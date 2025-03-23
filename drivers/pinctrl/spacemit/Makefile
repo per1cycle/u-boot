@@ -1,0 +1,1 @@
+obj-${CONFIG_SPACEMIT_K1_PINCTRL} += k1-pinctrl.o
