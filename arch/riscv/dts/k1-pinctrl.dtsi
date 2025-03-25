@@ -16,4 +16,14 @@
 			drive-strength = <32>;
 		};
 	};
+
+	pinctrl_i2c2_0: pinctrl0-2-cfg {
+		pinctrl0-2-pins {
+			pinmux = <K1_PADCONF(84, 2)>,
+				 <K1_PADCONF(85, 2)>;
+
+			bias-pull-up = <0>;
+			drive-strength = <32>;
+		};
+	};
 };

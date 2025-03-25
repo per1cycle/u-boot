@@ -461,5 +461,13 @@
 			reg = <0x0 0xd401e000 0x0 0x400>;
 			pinctrl-single,register-width = <32>;
 		};
+
+		i2c2: twsi2@d4012000 {
+			compatible = "spacemit,i2c";
+			reg = <0x0 0xd4012000 0x0 0x38>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
 	};
 };
