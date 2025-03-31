@@ -22,7 +22,33 @@
 };
 
 &uart0 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&uart0_2_cfg>;
 	status = "okay";
+};
+
+
+&eth0 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_gmac0>;
+
+	phy-reset-pin = <110>;
+
+	tx-phase = <90>;
+	rx-phase = <73>;
+
+	phy-mode = "rgmii";
+	phy-addr = <1>;
+	phy-handle = <&rgmii>;
+
+	ref-clock-from-phy;
+
+	mdio {
+		#address-cells = <0x1>;
+		#size-cells = <0x0>;
+		rgmii: phy@0 {
+			compatible = "ethernet-phy-id001c.c916";
+			device_type = "ethernet-phy";
+			reg = <0x1>;
+		};
+	};
 };
