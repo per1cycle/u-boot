@@ -822,6 +822,13 @@ config MMC_SUNXI_HAS_MODE_SWITCH
 	bool
 	depends on MMC_SUNXI
 
+config MMC_SDHCI_K1X
+	bool "SDHCI support for the K1X SD/MMC Controller"
+	depends on DM_MMC && BLK
+	depends on MMC_SDHCI
+	help
+	  Support for Spacemit K1x SDHCI host controller on RISCV SoCs platform
+
 config MMC_PITON
 	bool "MMC support for OpenPiton SoC"
 	help
